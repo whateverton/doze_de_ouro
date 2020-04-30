@@ -1,0 +1,3 @@
+#pragma once
+
+#define GAME_RULES "Regras:\n\nCada um pode escolher qual set de dados vai rolar : 3d4 de cobre, 2d6 de prata ou 1d12 de ouro.\n\nCada rodada consiste na escolha de um set.Depois que todos anunciarem os dados escolhidos, faz a rolagem e compara - se os valores.Ganha a rodada quem tirar o número maior.Em caso de empate leva quem escolheu o dado mais valioso d12 > d6 > d4.Caso seja o mesmo tipo de dado apenas os jogadores que empataram no maior número rolam novamente até ter um vencedor.\n\nVocê pode escolher um set diferente, ou não, a cada rodada.\n\nQuando se ganha uma rodada vc ganha uma pontuação equivalente ao set escolhido :\nCobre -> 1 ponto\nPrata -> 2 pontos\nOuro -> 3 pontos.\n\nGanha o  jogo quem chegar ao total de 12 pontos primeiro"
