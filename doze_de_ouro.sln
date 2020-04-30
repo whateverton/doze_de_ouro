@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "doze_de_ouro", "doze_de_ouro.vcxproj", "{FD1F7ECD-5162-4610-AB4D-D631A0AB81BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD1F7ECD-5162-4610-AB4D-D631A0AB81BC}.Debug|x64.ActiveCfg = Debug|x64
+		{FD1F7ECD-5162-4610-AB4D-D631A0AB81BC}.Debug|x64.Build.0 = Debug|x64
+		{FD1F7ECD-5162-4610-AB4D-D631A0AB81BC}.Debug|x86.ActiveCfg = Debug|Win32
+		{FD1F7ECD-5162-4610-AB4D-D631A0AB81BC}.Debug|x86.Build.0 = Debug|Win32
+		{FD1F7ECD-5162-4610-AB4D-D631A0AB81BC}.Release|x64.ActiveCfg = Release|x64
+		{FD1F7ECD-5162-4610-AB4D-D631A0AB81BC}.Release|x64.Build.0 = Release|x64
+		{FD1F7ECD-5162-4610-AB4D-D631A0AB81BC}.Release|x86.ActiveCfg = Release|Win32
+		{FD1F7ECD-5162-4610-AB4D-D631A0AB81BC}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D111A26-979E-48BB-919D-FA42161E2CFE}
+	EndGlobalSection
+EndGlobal
