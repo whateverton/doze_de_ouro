@@ -24,6 +24,7 @@ public:
 
     void resetPoints (){
         points = 0;
+        roll_log.clear();
     }
 
     bool operator < (const Player& pr) const

@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 #include "player.h"
+#include <cstring>
+#include <map>
 using namespace std;
 
 
@@ -109,12 +111,20 @@ std::string runGame (std::vector<Player*> &leaderboard){
 
     printLeaderBoard(leaderboard);
 
-    cout << "The winner is:" << winner->getId() << endl;
+    cout << "The winner is:" << winner->getId() << endl << endl;
     return winner->getId();
 }
 
-int main()
+int main(int argc, char* argv[])
 {
+    int first_of = 1;
+    if (argc > 2) {
+        if (!strcmp(argv[1], "--first_of")) {
+            first_of = std::stoi(argv[2]);
+        }
+    }
+       
+    
     DiceSet s3d4(3,DiceSet::Type(std::pair<int,int>(1,4),DiceSet::Type::COPPER));
     DiceSet s2d6(2,DiceSet::Type(std::pair<int,int>(1,6),DiceSet::Type::SILVER));
     DiceSet s1d12(1,DiceSet::Type(std::pair<int,int>(1,12),DiceSet::Type::GOLD));
@@ -122,8 +132,6 @@ int main()
     std::function<bool(Player&,Player&)> set_comp = [](Player &p1,Player &p2) -> bool {
         return p1.getPoints() < p2.getPoints();
     };
-
-
 
     auto chooseOnlyD4 = [s3d4] (std::vector<Player*>)-> DiceSet{return s3d4;};
     auto chooseOnlyD6 = [s2d6] (std::vector<Player*>)-> DiceSet{return s2d6;};
@@ -135,16 +143,36 @@ int main()
     Player p1("Only4",chooseOnlyD4);
     Player p2("Only6",chooseOnlyD6);
     Player p3("Only12",chooseOnlyD12);
-    Player p4("Only12_2",chooseOnlyD12);
 
     p1.chooseSet(players);
 
     players.push_back(&p1);
     players.push_back(&p2);
     players.push_back(&p3);
-    players.push_back(&p4);
 
-    runGame(players);
+    std::map<std::string, int> score;
+
+    for (auto player : players) {
+        score[player->getId()] = 0;
+    }
+    
+    std::string winner;
+    int num_games = 0;
+    do {
+        winner = runGame(players);
+        score[winner] = score[winner] + 1;
+        ++num_games;
+        for (auto player : players) {
+            player->resetPoints();
+        }
+    } while (score[winner] < first_of);
+
+    std::cout << "Final results:" << endl;
+    std::cout << "Total Games[:" << num_games << "]" << endl;
+
+    for (auto player : players) {
+        std::cout << "Player" + player->getId() + " won " << score[player->getId()] << "(" << ((float)score[player->getId()] / (float)num_games) * 100.0 << "%)" << endl;
+    }
 
     return 0;
 }
