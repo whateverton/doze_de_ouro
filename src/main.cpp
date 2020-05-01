@@ -32,10 +32,14 @@ int howManyDraws (std::vector<std::pair<DiceSet,Player*>> &pl_n_dice){
     while(it1->second->roll_log.back() == it2->second->roll_log.back() &&
        it1->first.getType().value == it2->first.getType().value){
         --it1;
+        
+        if (it2 == pl_n_dice.begin())
+            break;
+
         --it2;
         ++num_draws;
     }
-    std::cout << "DRAW[" << num_draws << "]" << endl;
+    
     return num_draws;
 }
 
@@ -55,7 +59,14 @@ void runRound (std::vector<Player*> &leaderboard){
         draws = howManyDraws(pl_n_dice);
         if(draws != 0){
             // create a sub vector where picks only the end ones with draws
-            std::vector<std::pair<DiceSet,Player*>> new_vec (pl_n_dice.end() - draws,pl_n_dice.end());
+            std::vector<std::pair<DiceSet,Player*>> new_vec (pl_n_dice.end() - draws-1,pl_n_dice.end());
+            std::cout << "DRAW[" << draws << "]" << endl;
+            std::cout << "Between players: ";
+            for (auto pnd : new_vec) {
+                std::cout << pnd.second->getId() << " | ";
+            }
+            std::cout << endl;
+
             pl_n_dice = new_vec;
         }
     }while(draws != 0);
@@ -117,18 +128,21 @@ int main()
     auto chooseOnlyD4 = [s3d4] (std::vector<Player*>)-> DiceSet{return s3d4;};
     auto chooseOnlyD6 = [s2d6] (std::vector<Player*>)-> DiceSet{return s2d6;};
     auto chooseOnlyD12 = [s1d12] (std::vector<Player*>)-> DiceSet {return s1d12;};
+   
 
     std::vector<Player*> players;
 
     Player p1("Only4",chooseOnlyD4);
     Player p2("Only6",chooseOnlyD6);
     Player p3("Only12",chooseOnlyD12);
+    Player p4("Only12_2",chooseOnlyD12);
 
     p1.chooseSet(players);
 
     players.push_back(&p1);
     players.push_back(&p2);
     players.push_back(&p3);
+    players.push_back(&p4);
 
     runGame(players);
 
